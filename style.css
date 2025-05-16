@@ -44,12 +44,16 @@ header {
   flex: 1;
 }
 .header_logo_smurfit {
-  width: 200px;
+  width: 50px;
   height: auto;
+  flex:1;
 }
 .header_logo_Proteccion{
-  width:350px;
+  width:300px;
   height: auto;
+  flex: 5;
+  display: flex;
+  justify-content: flex-end;
 }
 .header_titulos {
   display: flex;
