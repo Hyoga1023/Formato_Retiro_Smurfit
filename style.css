@@ -1,0 +1,579 @@
+@font-face {
+  font-family: "DiodrumCyrillic";
+  src: url("./font/DiodrumCyrillic-Semibold.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+.sofia-sans {
+  font-family: "Sofia Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 1000;
+  font-style: bold;
+}
+:root {
+  --Color-primario: #ffffff;
+  --Color-secundario: #053c74;
+  --Color-terciario: #bcd2ee;
+  --Color-cuaternario: #000000;
+}
+body {
+  width: 100%;
+  min-height: 100vh; /* mejor que height:100% para que tome todo el alto */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--Color-primario);
+  padding: 20px 0;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+h2 {
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1.7rem;
+  color: var(--Color-secundario);
+}
+header {
+  width: 100%;
+  max-width: 1200px;
+  margin: 10px auto; 
+  font-family: "Sofia Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--Color-primario);
+}
+.header_logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0;
+  flex: 1;
+}
+.header_logos img {
+  width: 150px;
+  height: auto;
+}
+.header_logos h3 {
+  font-family: "DiodrumCyrillic", sans-serif;
+  font-size: 3.5rem;
+  color: var(--Color-secundario);
+}
+.header_titulos {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.contenedor_info_basica {
+  width: 100%;
+  margin: 20px auto;
+  border: 2px solid black;
+}
+
+.titulo_info_basica {
+  background-color: var(--Color-terciario);
+  padding: 2px;
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: 2px solid black;
+  margin: 0;
+}
+
+.grid_info_basica {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 80px 80px 80px;
+  width: 100%;
+}
+
+.grid_info_basica > div {
+  border: 2px solid black;
+  padding: 8px;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item-fecha {
+  grid-column: 1 / 2;
+}
+
+.item-tipo-documento {
+  grid-column: 2 / 3;
+}
+
+.item-numero-documento {
+  grid-column: 3 / 4;
+}
+
+.item-nombre {
+  grid-column: 1 / 4;
+}
+
+.item-telefono {
+  grid-column: 1 / 2;
+}
+
+.item-correo {
+  grid-column: 2 / 4;
+}
+
+label {
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1.1rem;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+input,
+select {
+  box-sizing: border-box;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1rem;
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .grid_info_basica {
+    grid-template-columns: 1fr;
+  }
+
+  .item-fecha,
+  .item-tipo-documento,
+  .item-numero-documento,
+  .item-nombre,
+  .item-telefono,
+  .item-correo {
+    grid-column: 1;
+  }
+}
+
+/*****************Seccion Tipo de Retiro*****************/
+
+.contenedor_tipo_retiro {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 100px;
+  border: 3px solid black;
+}
+.grid_tipo_retiro {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "retiro_parcial retiro_total patrocinadora"
+    "ruta_agotamiento ruta_agotamiento patrocinadora";
+  width: 100%;
+}
+
+.grid_tipo_retiro > div {
+  border: 2px solid black;
+  padding: 8px;
+  font-size: 0.9rem;
+}
+.titulo_tipo_retiro {
+  background-color: var(--Color-terciario);
+  padding: 2px;
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: 3px solid black;
+  margin: 0;
+}
+.section-title {
+  background-color: var(--Color-terciario);
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+  font-size: 1.1rem;
+  border-bottom: 1px solid black;
+}
+
+.retiro-parcial {
+  grid-area: retiro_parcial;
+  display: flex;
+  flex-direction: column;
+}
+
+.retiro-total {
+  grid-area: retiro_total;
+  display: flex;
+  flex-direction: column;
+}
+
+.patrocinadora {
+  grid-area: patrocinadora;
+  display: flex;
+  flex-direction: column;
+}
+
+.ruta-agotamiento {
+  grid-area: ruta_agotamiento;
+  padding-top: 0 !important;
+}
+
+.texto-small {
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 5px;
+}
+.valor-retirar {
+  background-color: var(--Color-terciario);
+  font-weight: bold;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.valor-retirar input {
+  width: 100%;
+  background-color: var(--Color-terciario);
+  border: 1px solid var(--Color-cuaternario); /* Negro */
+  padding: 8px;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 2  rem;
+  margin-top: 5px;
+}
+
+/* Opcional: estilo al enfocar el input */
+.valor-retirar input:focus {
+  outline: 2px solid var(--Color-secundario); /* Azul oscuro */
+}
+.input-currency {
+  display: flex;
+  align-items: center;
+  background-color: var(--Color-terciario);
+  border: 1px solid var(--Color-cuaternario);
+  padding: 5px 10px;
+}
+
+.input-currency span {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.input-currency input {
+  border: none;
+  background: transparent;
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* Placeholder para sugerir formato */
+.input-currency input::placeholder {
+  color: #999;
+  opacity: 1;
+}
+.patrocinadora-input {
+  height: 60px;
+  margin: 5px 0;
+  resize: none;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  padding: 15px 20px;
+}
+
+@media (max-width: 600px) {
+  .grid_info_basica,
+  .grid_tipo_retiro {
+    grid-template-columns: 1fr;
+  }
+
+  .grid_tipo_retiro {
+    grid-template-areas:
+      "retiro_parcial"
+      "retiro_total"
+      "patrocinadora"
+      "ruta_agotamiento";
+  }
+
+  .item-fecha,
+  .item-tipo-documento,
+  .item-numero-documento,
+  .item-nombre,
+  .item-telefono,
+  .item-correo {
+    grid-column: 1;
+  }
+}
+.espacio-pdf {
+    height: 100px;
+    width: 100%;
+    opacity: 0; 
+    pointer-events: none; 
+}
+
+main {
+  width: 100%;
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 0; 
+  padding-bottom: 50px;
+}
+.desborde {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start; 
+  margin: 0; 
+  font-family: 'Sofia Sans', sans-serif;
+  padding: 10px 0 10px 10px; 
+  width: 100%; 
+  border-top: 1px solid #000;
+  font-weight: bold;
+  text-align: left; 
+}
+footer {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--Color-primario);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+footer p {
+  font-size: 0.8rem;
+  font-family: "Sofia Sans", sans-serif;
+  font-weight: 1000;
+  color: var(--Color-secundario);
+}
+footer img {
+  width: 120px;
+  height: auto;
+  margin-left: 1rem;
+}
+
+/***************tercera parte*******************/
+.contenedor_forma_retiro {
+  border: 3px solid black;
+  margin: 10px;
+}
+
+.forma-retiro-content {
+  display: flex;
+  padding: 10px;
+  border-bottom: 3px solid black;
+}
+
+.forma-retiro-izq,
+.forma-retiro-der {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.titulo_info_transaccional {
+  background-color: var(--Color-terciario);
+  padding: 2px;
+  color: var(--Color-secundario);
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.titulo_forma_retiro {
+  background-color: var(--Color-terciario);
+  padding: 2px;
+  color: var(--Color-secundario);
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.titulo_firmas {
+  background-color: var(--Color-terciario);
+  padding: 2px;
+  color: var(--Color-secundario);
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.titulo_beneficiario {
+  background-color: var(--Color-terciario);
+  padding: 2px;
+  color: var(--Color-secundario);
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: 3px solid black;
+  margin: 0;
+}
+
+.nota-retiro {
+  font-style: italic;
+  font-size: 1rem;
+  padding: 5px 10px;
+  text-align: right;
+}
+
+.texto-destacado {
+  font-weight: bold;
+}
+
+/* Estilos para Beneficiario del Retiro */
+.grid_beneficiario {
+  display: grid;
+  grid-template-columns: 3fr 1fr 2fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "nombre tipo_id num_doc"
+    "num_cuenta num_cuenta tipo_cuenta";
+  width: 100%;
+}
+
+.grid_beneficiario > div {
+  border: 1px solid black;
+  padding: 8px;
+  font-size: 0.9rem;
+}
+
+.beneficiario-nombre {
+  grid-area: nombre;
+}
+
+.beneficiario-tipo-id {
+  grid-area: tipo_id;
+}
+
+.beneficiario-num-doc {
+  grid-area: num_doc;
+}
+
+.beneficiario-num-cuenta {
+  grid-area: num_cuenta;
+  display: flex;
+  flex-direction: column;
+}
+
+.beneficiario-tipo-cuenta {
+  grid-area: tipo_cuenta;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contenedor_info_transaccional {
+  border-bottom: 3px solid black;
+}
+.beneficiario-tipo-cuenta .checkbox-container {
+  margin: 8px 0;
+}
+
+.entidad-bancaria {
+  margin-top: 10px;
+}
+
+/* Estilos para Firmas y Autorizaciones */
+.grid_firmas {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100px auto;
+  width: 100%;
+}
+
+.grid_firmas > div {
+  border: 1px solid black;
+  padding: 0;
+  text-align: center;
+}
+
+.firma-box {
+  height: 100px;
+  border-bottom: 3px solid black;
+}
+
+.firma-titulo {
+  background-color: var(--Color-terciario);
+  padding: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.firma-subtitulo {
+  padding: 5px;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.fecha-field {
+  text-align: left;
+  padding: 10px;
+}
+
+@media (max-width: 600px) {
+  .grid_info_basica,
+  .grid_tipo_retiro,
+  .grid_beneficiario,
+  .grid_firmas {
+    grid-template-columns: 1fr;
+  }
+
+  .grid_tipo_retiro {
+    grid-template-areas:
+      "retiro_parcial"
+      "retiro_total"
+      "patrocinadora"
+      "ruta_agotamiento";
+  }
+
+  .grid_beneficiario {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "nombre"
+      "tipo_id"
+      "num_doc"
+      "num_cuenta"
+      "tipo_cuenta";
+  }
+
+  .grid_firmas {
+    grid-template-columns: 1fr;
+  }
+
+  .item-fecha,
+  .item-tipo-documento,
+  .item-numero-documento,
+  .item-nombre,
+  .item-telefono,
+  .item-correo {
+    grid-column: 1;
+  }
+}
+.botón_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+.botón_pdf {
+  background-color: var(--Color-secundario);
+  color: var(--Color-primario);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.botón_pdf:hover {
+  background-color: var(--Color-primario);
+  color: var(--Color-secundario);
+  border: 2px solid var(--Color-secundario);
+  transform: scale(1.05);
+}

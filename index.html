@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./img/Logo Smurfit.jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <title>Formato Smurfit</title>
+  </head>
+  <body>
+    <header>
+      <div class="header_logos">
+        <img src="./img/logo-smurfit-kappa.png" alt="logo Smurfit" />
+        <h3>Protección</h3>
+      </div class="header_titulos">
+            <h2>SOLICITUD DE RETIRO O TRASLADO</h2>
+            <h2>FONDO DE PENSIONES INSTITUCIONAL SMURFIT KAPPA</h2>
+      </div>
+<div class="contenedor_info_basica">
+    <h2 class="titulo_info_basica">INFORMACIÓN BÁSICA</h2>
+    <div class="grid_info_basica">
+      <div class="item-fecha">
+        <label for="fecha">FECHA:</label>
+        <input type="date" id="fecha" name="fecha" />
+      </div>
+      <div class="item-tipo-documento">
+        <label for="tipo_documento">TIPO DE DOCUMENTO:</label>
+        <select id="tipo_documento" name="tipo_documento">
+          <option value="cc">Cédula de ciudadanía</option>
+          <option value="ti">Tarjeta de identidad</option>
+          <option value="ce">Cédula de extranjería</option>
+        </select>
+      </div>
+      <div class="item-numero-documento">
+        <label for="num_documento">NÚMERO DE DOCUMENTO:</label>
+        <input type="text" id="num_documento" name="num_documento" />
+      </div>
+      <div class="item-nombre">
+        <label for="nombre">NOMBRE:</label>
+        <input type="text" id="nombre" name="nombre" />
+      </div>
+      <div class="item-telefono">
+        <label for="telefono">TELÉFONO:</label>
+        <input type="tel" id="telefono" name="telefono" />
+      </div>
+      <div class="item-correo">
+        <label for="correo">CORREO ELECTRÓNICO:</label>
+        <input type="email" id="correo" name="correo" />
+      </div>
+    </div>
+  </div>
+  <div class="contenedor_tipo_retiro">
+    <h2 class="titulo_tipo_retiro">TIPO DE RETIRO**</h2>
+    <div class="grid_tipo_retiro">
+      <div class="retiro-parcial">
+        <div class="section-title">RETIRO PARCIAL</div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="ordinarios" name="retiro_parcial" value="ordinarios">
+          <label for="ordinarios">ORDINARIOS</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="extraordinarios" name="retiro_parcial" value="extraordinarios">
+          <label for="extraordinarios">EXTRAORDINARIOS</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="vivienda_parcial" name="retiro_parcial" value="vivienda">
+          <label for="vivienda_parcial">VIVIENDA</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="pensionado_parcial" name="retiro_parcial" value="pensionado">
+          <label for="pensionado_parcial">PENSIONADO</label>
+        </div>
+      </div>
+      <div class="retiro-total">
+        <div class="section-title">RETIRO TOTAL</div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="voluntario" name="retiro_total" value="voluntario">
+          <label for="voluntario">VOLUNTARIO</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="desvinculacion" name="retiro_total" value="desvinculacion">
+          <label for="desvinculacion">DESVINCULACIÓN LABORAL</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="vivienda_total" name="retiro_total" value="vivienda">
+          <label for="vivienda_total">VIVIENDA</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="pensionado_total" name="retiro_total" value="pensionado">
+          <label for="pensionado_total">PENSIONADO</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="fallecimiento" name="retiro_total" value="fallecimiento">
+          <label for="fallecimiento">FALLECIMIENTO PARTICIPE</label>
+        </div>
+      </div>
+      
+      <div class="patrocinadora">
+        <div class="section-title">PATROCINADORA</div>
+        <p>Escriba el nombre de la empresa en que labora:</p>
+        <textarea class="patrocinadora-input"></textarea>
+        <div class="valor-retirar">
+  <label for="monto_retiro">VALOR A RETIRAR</label>
+  <div class="input-currency">
+    <span>$</span>
+    <input 
+      type="text" 
+      id="monto_retiro" 
+      name="monto_retiro" 
+      inputmode="numeric"
+      pattern="[0-9,]*" 
+    >
+  </div>
+</div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="maximo_disponible" name="valor_retirar" value="maximo">
+          <label for="maximo_disponible">MÁXIMO DISPONIBLE</label>
+        </div>
+        <p class="texto-small">** El afiliado se encuentra a paz y salvo de alguna obligación que haya adquirido con la patrocinadora y pueden levantarse los embargos, anotaciones, inmovilizaciones y/o demás bloqueos que afecten el valor máximo a retirar de la cuenta.</p>
+        <p class="texto-small">** La Patrocinadora autoriza consolidar y ser entregados los dineros aportados por la empresa en el plan 100%.</p>
+      </div>
+      <div class="ruta-agotamiento">
+        <div class="section-title">RUTA DE AGOTAMIENTO DE LOS APORTES</div>
+        <div style="display: flex; justify-content: space-between; padding: 10px;">
+          <div style="width: 45%;">
+            <div class="checkbox-container">
+              <input type="checkbox" id="exentos" name="ruta_agotamiento" value="exentos">
+              <label for="exentos">EXENTOS</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="mixtos" name="ruta_agotamiento" value="mixtos">
+              <label for="mixtos">MIXTOS</label>
+            </div>
+          </div>
+          <div style="width: 52%;">
+            <div class="checkbox-container">
+              <input type="checkbox" id="sin_beneficio" name="beneficio_tributario" value="sin">
+              <label for="sin_beneficio">SIN BENEFICIO TRIBUTARIO</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="con_beneficio" name="beneficio_tributario" value="con">
+              <label for="con_beneficio">CON BENEFICIO TRIBUTARIO</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contenedor_info_transaccional">
+    <h2 class="titulo_info_transaccional">INFORMACIÓN TRANSACCIONAL</h2>
+    <div class="contenedor_forma_retiro">
+      <h3 class="titulo_forma_retiro">FORMA DE RETIRO</h3>
+      <div class="forma-retiro-content">
+        <div class="forma-retiro-izq">
+          <div class="checkbox-container">
+            <input type="checkbox" id="transferencia" name="forma_retiro" value="transferencia">
+            <label for="transferencia">TRANSFERENCIA</label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="cheque" name="forma_retiro" value="cheque">
+            <label for="cheque">CHEQUE</label>
+          </div>
+        </div>
+        <div class="forma-retiro-der">
+          <div class="checkbox-container">
+            <input type="checkbox" id="transferencia_tercero" name="forma_retiro" value="transferencia_tercero">
+            <label for="transferencia_tercero">TRANSFERENCIA A TERCERO</label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="traslado" name="forma_retiro" value="traslado">
+            <label for="traslado">TRASLADO</label>
+          </div>
+        </div>
+      </div>
+      <div class="nota-retiro">
+        <span class="texto-destacado">Nota:</span> La oferta de servicio son máximo 20 días hábiles, 15 por parte de la Patrocinadora para <span class="texto-destacado">aprobación</span> y 5 por parte de Protección para <span class="texto-destacado">pago</span>.
+      </div>
+    </div>
+    
+    <!-- Sección de Beneficiario del Retiro -->
+    <h3 class="titulo_beneficiario">BENEFICIARIO DEL RETIRO</h3>
+    <div class="grid_beneficiario">
+      <div class="beneficiario-nombre">
+        <label for="beneficiario_nombre">NOMBRE COMPLETO</label>
+        <input type="text" id="beneficiario_nombre" name="beneficiario_nombre">
+      </div>
+      <div class="beneficiario-tipo-id">
+        <label for="beneficiario_tipo_id">TIPO ID</label>
+        <select id="beneficiario_tipo_id" name="beneficiario_tipo_id">
+          <option value="cc">CC</option>
+          <option value="ce">CE</option>
+          <option value="ti">TI</option>
+        </select>
+      </div>
+      <div class="beneficiario-num-doc">
+        <label for="beneficiario_num_doc">NÚMERO DE DOCUMENTO</label>
+        <input type="text" id="beneficiario_num_doc" name="beneficiario_num_doc">
+      </div>
+      <div class="beneficiario-num-cuenta">
+        <label for="beneficiario_num_cuenta">NÚMERO DE CUENTA BANCARIA</label>
+        <input type="text" id="beneficiario_num_cuenta" name="beneficiario_num_cuenta">
+        <div class="entidad-bancaria">
+          <label for="entidad_bancaria">ENTIDAD BANCARIA</label>
+          <input type="text" id="entidad_bancaria" name="entidad_bancaria">
+        </div>
+      </div>
+      <div class="beneficiario-tipo-cuenta">
+        <label>TIPO DE CUENTA BANCARIA</label>
+        <div class="checkbox-container">
+          <input type="checkbox" id="cuenta_ahorros" name="tipo_cuenta" value="ahorros">
+          <label for="cuenta_ahorros">AHORROS</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="cuenta_corriente" name="tipo_cuenta" value="corriente">
+          <label for="cuenta_corriente">CORRIENTE</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Sección de Firmas y Autorizaciones -->
+  <div class="contenedor_firmas">
+    <h2 class="titulo_firmas">FIRMAS Y AUTORIZACIONES</h2>
+    <div class="grid_firmas">
+      <div>
+        <div class="firma-box"></div>
+        <div class="firma-titulo">INFORMACIÓN DE LA TRANSACCIÓN</div>
+        <div class="firma-subtitulo">ESPACIO EXCLUSIVO PARA PROTECCIÓN</div>
+      </div>
+      <div>
+        <div class="firma-box"></div>
+        <div class="firma-titulo">FIRMA DEL AFILIADO</div>
+        <div class="fecha-field">
+          <label for="fecha_firma">FICHA:</label>
+        </div>
+      </div>
+      <div>
+        <div class="firma-box"></div>
+        <div class="firma-titulo">AUTORIZACIÓN DE LA TRANSACCIÓN</div>
+        <div class="firma-subtitulo">ESPACIO EXCLUSIVO PARA LA PATROCINADORA</div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </header>
+    <main>
+    <section class="desborde">
+        <p>Observaciones:</p>
+    </section>
+    <div class="espacio-pdf"></div>
+    <section class="botón_container">
+        <button class="botón_pdf" id="boton-pdf">Pasar a PDF</button>
+    </section>
+</main>
+    <footer>
+      <p>&copy; 2025 Cesar Martinez. All rights reserved.</p>
+      <img
+        src="./img/logo_letra_negra_sin_fondo.png"
+        alt="Logo desarrollador"
+      />
+    </footer>
+    <script src="crearPDF.js"></script>
+  </body>
+</html>
