@@ -130,7 +130,7 @@ input,
 select {
   box-sizing: border-box;
   font-family: "Sofia Sans", sans-serif;
-  font-size: 1rem;
+  font-size: 1.5rem;
   width: 100%;
   padding: 5px 8px;
   border: 1px solid #ccc;
@@ -257,7 +257,7 @@ select {
   border: none;
   background: transparent;
   font-family: "Sofia Sans", sans-serif;
-  font-size: 1rem;
+  font-size: 1.5rem;
   width: 100%;
 }
 
