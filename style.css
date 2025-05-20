@@ -12,7 +12,7 @@
 }
 body {
   width: 100%;
-  min-height: 100vh; /* mejor que height:100% para que tome todo el alto */
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -229,16 +229,16 @@ select {
 .valor-retirar input {
   width: 100%;
   background-color: var(--Color-terciario);
-  border: 1px solid var(--Color-cuaternario); /* Negro */
+  border: 1px solid var(--Color-cuaternario); 
   padding: 8px;
   font-family: "Sofia Sans", sans-serif;
   font-size: 2  rem;
   margin-top: 5px;
 }
 
-/* Opcional: estilo al enfocar el input */
+
 .valor-retirar input:focus {
-  outline: 2px solid var(--Color-secundario); /* Azul oscuro */
+  outline: 2px solid var(--Color-secundario); 
 }
 .input-currency {
   display: flex;
@@ -262,7 +262,6 @@ select {
   width: 100%;
 }
 
-/* Placeholder para sugerir formato */
 .input-currency input::placeholder {
   color: #999;
   opacity: 1;

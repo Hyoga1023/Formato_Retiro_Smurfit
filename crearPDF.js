@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Asignar evento al checkbox
   checkboxMaximo.addEventListener('change', toggleMontoRetiro);
 
-  // Si se empieza a escribir en el campo de monto, desmarcar la casilla
+
   inputMontoRetiro.addEventListener('input', function() {
     if (inputMontoRetiro.value.trim() !== '') {
       checkboxMaximo.checked = false;
@@ -235,14 +235,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const campoCorreo = document.getElementById('correo');
   if (campoCorreo) {
     campoCorreo.addEventListener('input', function(e) {
-      // No modificamos el valor, correos pueden tener minúsculas
+
     });
   }
 
   // Inicializar el estado del campo de monto al cargar la página
   toggleMontoRetiro();
 
-  // Agregar estilos CSS para campos deshabilitados
   const style = document.createElement('style');
   style.textContent = `
     .input-currency.disabled {
