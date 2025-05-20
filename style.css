@@ -251,6 +251,7 @@ select {
 .input-currency span {
   font-weight: bold;
   margin-right: 5px;
+  font-size: 1.5rem;
 }
 
 .input-currency input {
@@ -270,6 +271,7 @@ select {
   height: 60px;
   margin: 5px 0;
   resize: none;
+  font-size: 1.5rem;
 }
 
 .checkbox-container {

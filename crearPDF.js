@@ -134,3 +134,121 @@ document.getElementById('monto_retiro').addEventListener('input', function(e) {
     let value = e.target.value.replace(/\D/g, '');
     e.target.value = new Intl.NumberFormat('es-MX').format(value);
 });
+
+/*************************modificación campos input*************** */
+document.addEventListener('DOMContentLoaded', function() {
+  // 1. Implementación para alternar entre "MÁXIMO DISPONIBLE" y "VALOR A RETIRAR"
+  const checkboxMaximo = document.getElementById('maximo_disponible');
+  const inputMontoRetiro = document.getElementById('monto_retiro');
+
+  // Función para manejar la interacción entre checkbox y campo de monto
+  function toggleMontoRetiro() {
+    if (checkboxMaximo.checked) {
+      inputMontoRetiro.disabled = true;
+      inputMontoRetiro.value = '';
+      inputMontoRetiro.parentElement.classList.add('disabled');
+    } else {
+      inputMontoRetiro.disabled = false;
+      inputMontoRetiro.parentElement.classList.remove('disabled');
+    }
+  }
+
+  // Asignar evento al checkbox
+  checkboxMaximo.addEventListener('change', toggleMontoRetiro);
+
+  // Si se empieza a escribir en el campo de monto, desmarcar la casilla
+  inputMontoRetiro.addEventListener('input', function() {
+    if (inputMontoRetiro.value.trim() !== '') {
+      checkboxMaximo.checked = false;
+    }
+  });
+
+  // 2. Validación de campos (números y texto)
+  
+  // Campos que solo deben aceptar números
+  const camposNumericos = [
+    'num_documento',
+    'telefono',
+    'monto_retiro',
+    'beneficiario_num_doc',
+    'beneficiario_num_cuenta'
+  ];
+
+  // Campos que solo deben aceptar letras y convertir a mayúsculas
+  const camposTexto = [
+    'nombre',
+    'beneficiario_nombre',
+    'entidad_bancaria'
+  ];
+
+  // Validar campos numéricos
+  camposNumericos.forEach(function(id) {
+    const campo = document.getElementById(id);
+    if (campo) {
+      campo.addEventListener('input', function(e) {
+        // Reemplazar cualquier caracter que no sea número
+        let valor = e.target.value.replace(/[^0-9]/g, '');
+        
+        // Para el campo de monto, permitir formato de miles con comas
+        if (id === 'monto_retiro') {
+          // Eliminar comas existentes primero
+          valor = valor.replace(/,/g, '');
+          
+          // Formatear con comas para miles
+          if (valor.length > 0) {
+            valor = new Intl.NumberFormat('es-CO').format(parseInt(valor));
+          }
+        }
+        
+        e.target.value = valor;
+      });
+    }
+  });
+
+  // Validar campos de texto y convertir a mayúsculas
+  camposTexto.forEach(function(id) {
+    const campo = document.getElementById(id);
+    if (campo) {
+      campo.addEventListener('input', function(e) {
+        // Reemplazar números por nada
+        let valor = e.target.value.replace(/[0-9]/g, '');
+        
+        // Convertir a mayúsculas
+        valor = valor.toUpperCase();
+        
+        e.target.value = valor;
+      });
+    }
+  });
+
+  // Aplicar validación a la textarea de patrocinadora (solo texto y mayúsculas)
+  const textareaPatrocinadora = document.querySelector('.patrocinadora-input');
+  if (textareaPatrocinadora) {
+    textareaPatrocinadora.addEventListener('input', function(e) {
+      // Convertir a mayúsculas
+      let valor = e.target.value.toUpperCase();
+      e.target.value = valor;
+    });
+  }
+
+  // Para el correo electrónico, permitir combinación de caracteres pero mantener minúsculas
+  const campoCorreo = document.getElementById('correo');
+  if (campoCorreo) {
+    campoCorreo.addEventListener('input', function(e) {
+      // No modificamos el valor, correos pueden tener minúsculas
+    });
+  }
+
+  // Inicializar el estado del campo de monto al cargar la página
+  toggleMontoRetiro();
+
+  // Agregar estilos CSS para campos deshabilitados
+  const style = document.createElement('style');
+  style.textContent = `
+    .input-currency.disabled {
+      opacity: 0.6;
+      background-color: #f0f0f0;
+    }
+  `;
+  document.head.appendChild(style);
+});
