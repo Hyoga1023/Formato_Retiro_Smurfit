@@ -61,12 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 contenedor.appendChild(mainClone);
                 document.body.appendChild(contenedor);
 
-                // OPTIMIZACIÓN 1: Reducir la escala de html2canvas a un valor óptimo
+             
                 const canvas = await html2canvas(contenedor, {
-                    scale: 1.0, // Reducido de 1.5 a 1.0 para reducir tamaño
+                    scale: 1.0, 
                     useCORS: true,
-                    logging: false, // Deshabilitar logs para mejorar rendimiento
-                    imageTimeout: 0, // Sin timeout para imágenes
+                    logging: false,
+                    imageTimeout: 0, 
                     windowWidth: contenedor.scrollWidth,
                     windowHeight: contenedor.scrollHeight,
                     onclone: function(clonedDoc) {
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
 
                         // OPTIMIZACIÓN 2: Eliminar o simplificar elementos innecesarios
-                        // Eliminar imágenes decorativas, fondos complejos, etc. si existen
+                     
                         const elementosDecorativosPesados = clonedDoc.querySelectorAll('.decorativo, .imagen-decorativa');
                         elementosDecorativosPesados.forEach(elem => {
                             elem.style.display = 'none';
