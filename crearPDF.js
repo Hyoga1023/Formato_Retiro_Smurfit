@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const headerClone = document.querySelector('header').cloneNode(true);
                 const mainClone = document.querySelector('main').cloneNode(true);
 
+                // Preparar observaciones
                 const observaciones = mainClone.querySelector('.desborde');
                 if (observaciones) {
                     observaciones.style.display = 'block';
@@ -22,11 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     observaciones.style.paddingBottom = '30px';
                 }
 
+                // Ocultar botón
                 const botonClone = mainClone.querySelector('.botón_container');
                 if (botonClone) {
                     botonClone.style.display = 'none';
                 }
 
+                // Ajustar selects
                 const selects = headerClone.querySelectorAll('select');
                 selects.forEach(select => {
                     select.style.height = 'auto';
@@ -35,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     select.style.position = 'relative';
                 });
 
+                // Función para ajustar títulos
                 const ajustarTitulos = (element) => {
                     const titulos = element.querySelectorAll('.titulo_info_basica, .titulo_tipo_retiro, .titulo_info_transaccional, .titulo_forma_retiro, .titulo_beneficiario, .titulo_firmas');
                     titulos.forEach(titulo => {
@@ -57,9 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 contenedor.appendChild(mainClone);
                 document.body.appendChild(contenedor);
 
+                // OPTIMIZACIÓN 1: Reducir la escala de html2canvas a un valor óptimo
                 const canvas = await html2canvas(contenedor, {
-                    scale: 1.5,
+                    scale: 1.0, // Reducido de 1.5 a 1.0 para reducir tamaño
                     useCORS: true,
+                    logging: false, // Deshabilitar logs para mejorar rendimiento
+                    imageTimeout: 0, // Sin timeout para imágenes
                     windowWidth: contenedor.scrollWidth,
                     windowHeight: contenedor.scrollHeight,
                     onclone: function(clonedDoc) {
@@ -84,10 +91,28 @@ document.addEventListener('DOMContentLoaded', () => {
                             titulo.style.wordSpacing = '0.2em';
                             titulo.style.letterSpacing = '0.005em';
                         });
+
+                        // OPTIMIZACIÓN 2: Eliminar o simplificar elementos innecesarios
+                        // Eliminar imágenes decorativas, fondos complejos, etc. si existen
+                        const elementosDecorativosPesados = clonedDoc.querySelectorAll('.decorativo, .imagen-decorativa');
+                        elementosDecorativosPesados.forEach(elem => {
+                            elem.style.display = 'none';
+                        });
+                        
+                        // Simplificar sombras y efectos CSS
+                        const elementosConEfectos = clonedDoc.querySelectorAll('*');
+                        elementosConEfectos.forEach(elem => {
+                            elem.style.boxShadow = 'none';
+                            elem.style.textShadow = 'none';
+                            elem.style.filter = 'none';
+                        });
                     }
                 });
 
                 document.body.removeChild(contenedor);
+
+                // OPTIMIZACIÓN 3: Configurar la compresión de imagen en jsPDF
+                const imagenData = canvas.toDataURL('image/jpeg', 0.85); // Cambiado de PNG a JPEG con compresión 0.85
 
                 const margenLateral = 10;
                 const margenSuperior = 7;
@@ -103,8 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const nuevoAlto = pdfHeight * escalaAjustada;
 
                     pdf.addImage(
-                        canvas.toDataURL('image/png'),
-                        'PNG',
+                        imagenData,
+                        'JPEG', // Cambiado de PNG a JPEG
                         (pdf.internal.pageSize.getWidth() - nuevoAncho) / 2,
                         margenSuperior,
                         nuevoAncho,
@@ -112,8 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     );
                 } else {
                     pdf.addImage(
-                        canvas.toDataURL('image/png'),
-                        'PNG',
+                        imagenData,
+                        'JPEG', // Cambiado de PNG a JPEG
                         margenLateral,
                         margenSuperior,
                         pdfWidth,
@@ -121,7 +146,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     );
                 }
 
-                pdf.save('Formato de Retiro.pdf');
+                // OPTIMIZACIÓN 4: Configurar la compresión del PDF
+                const pdfOptions = {
+                    compress: true,
+                    precision: 2
+                };
+                
+                pdf.save('Formato de Retiro.pdf', pdfOptions);
             } catch (error) {
                 console.error("Error:", error);
                 alert("Error al generar PDF. Consulte la consola.");
@@ -235,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const campoCorreo = document.getElementById('correo');
   if (campoCorreo) {
     campoCorreo.addEventListener('input', function(e) {
-
+      // No se aplica ninguna transformación específica al correo
     });
   }
 
