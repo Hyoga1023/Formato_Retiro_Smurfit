@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.removeChild(contenedor);
 
                 // OPTIMIZACIÓN 3: Configurar la compresión de imagen en jsPDF
-                const imagenData = canvas.toDataURL('image/jpeg', 0.85); // Cambiado de PNG a JPEG con compresión 0.85
+                const imagenData = canvas.toDataURL('image/jpeg', 0.95);
 
                 const margenLateral = 10;
                 const margenSuperior = 7;
