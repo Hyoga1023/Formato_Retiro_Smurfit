@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const selects = headerClone.querySelectorAll('select');
                 selects.forEach(select => {
                     select.style.height = 'auto';
-                    select.style.minHeight = '30px';
+                    select.style.minHeight = '35px';
                     select.style.overflow = 'visible';
                     select.style.position = 'relative';
                 });
