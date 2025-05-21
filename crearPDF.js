@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const selects = headerClone.querySelectorAll('select');
                 selects.forEach(select => {
                     select.style.height = 'auto';
-                    select.style.minHeight = '35px';
+                    select.style.minHeight = '40px';
                     select.style.overflow = 'visible';
                     select.style.position = 'relative';
                 });
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             textNode.style.width = '100%';
                             textNode.style.boxSizing = 'border-box';
                             textNode.style.fontFamily = "'Sofia Sans', sans-serif";
-                            textNode.style.fontSize = '1rem';
+                            textNode.style.fontSize = '1.5rem';
                             textNode.style.height = 'auto';
                             select.parentNode.replaceChild(textNode, select);
                         });
@@ -269,6 +269,20 @@ document.addEventListener('DOMContentLoaded', function() {
       // No se aplica ninguna transformación específica al correo
     });
   }
+  
+  // 3. Exclusividad en las opciones de forma de retiro
+  const opcionesFormaRetiro = document.querySelectorAll('input[name="forma_retiro"]');
+  opcionesFormaRetiro.forEach(opcion => {
+    opcion.addEventListener('change', function() {
+      if (this.checked) {
+        opcionesFormaRetiro.forEach(otraOpcion => {
+          if (otraOpcion !== this) {
+            otraOpcion.checked = false;
+          }
+        });
+      }
+    });
+  });
 
   // Inicializar el estado del campo de monto al cargar la página
   toggleMontoRetiro();
