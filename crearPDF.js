@@ -315,6 +315,10 @@ document.addEventListener('DOMContentLoaded', function() {
         'input[name="ruta_agotamiento"]',
         'input[name="beneficio_tributario"]'
       ]
+    },
+    {
+      grupo: 'tipo_cuenta',
+      selector: 'input[name="tipo_cuenta"]'
     }
   ];
 
