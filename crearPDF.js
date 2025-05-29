@@ -296,3 +296,87 @@ document.addEventListener('DOMContentLoaded', function() {
   `;
   document.head.appendChild(style);
 });
+
+// 4. Exclusividad en checkboxes de secciones específicas y entre Retiro Parcial y Retiro Total
+document.addEventListener('DOMContentLoaded', function() {
+  // Definir los grupos de checkboxes por sus atributos name
+  const seccionesExcluyentes = [
+    {
+      grupo: 'retiro_parcial',
+      selector: 'input[name="retiro_parcial"]'
+    },
+    {
+      grupo: 'retiro_total',
+      selector: 'input[name="retiro_total"]'
+    },
+    {
+      grupo: 'ruta_agotamiento',
+      selectores: [
+        'input[name="ruta_agotamiento"]',
+        'input[name="beneficio_tributario"]'
+      ]
+    }
+  ];
+
+  // Función para manejar la exclusividad dentro de un grupo de checkboxes
+  function hacerExcluyentes(grupo, selectores) {
+    let checkboxes = [];
+    if (Array.isArray(selectores)) {
+      selectores.forEach(selector => {
+        checkboxes = [...checkboxes, ...document.querySelectorAll(selector)];
+      });
+    } else {
+      checkboxes = document.querySelectorAll(selectores);
+    }
+
+    if (checkboxes.length === 0) {
+      console.warn(`No se encontraron checkboxes para el grupo: ${grupo}`);
+      return;
+    }
+
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        if (this.checked) {
+          // Desmarcar otros checkboxes en el mismo grupo
+          checkboxes.forEach(otroCheckbox => {
+            if (otroCheckbox !== this) {
+              otroCheckbox.checked = false;
+            }
+          });
+          // Si el grupo es retiro_parcial o retiro_total, desmarcar el otro grupo
+          if (grupo === 'retiro_parcial' || grupo === 'retiro_total') {
+            const otroGrupo = grupo === 'retiro_parcial' ? 'retiro_total' : 'retiro_parcial';
+            const otraSeccion = seccionesExcluyentes.find(s => s.grupo === otroGrupo);
+            if (otraSeccion) {
+              const otrosCheckboxes = document.querySelectorAll(otraSeccion.selector);
+              otrosCheckboxes.forEach(otroCheckbox => {
+                otroCheckbox.checked = false;
+              });
+            }
+          }
+        }
+      });
+    });
+  }
+
+  // Aplicar exclusividad a cada grupo
+  seccionesExcluyentes.forEach(seccion => {
+    hacerExcluyentes(seccion.grupo, seccion.selectores || seccion.selector);
+  });
+
+  // Depuración para verificar qué checkboxes se están detectando
+  seccionesExcluyentes.forEach(seccion => {
+    let checkboxes = [];
+    if (Array.isArray(seccion.selectores)) {
+      seccion.selectores.forEach(selector => {
+        checkboxes = [...checkboxes, ...document.querySelectorAll(selector)];
+      });
+    } else {
+      checkboxes = document.querySelectorAll(seccion.selector);
+    }
+    console.log(`Grupo ${seccion.grupo}: ${checkboxes.length} checkboxes encontrados.`);
+    checkboxes.forEach(checkbox => {
+      console.log(`- Checkbox con value: ${checkbox.value}, id: ${checkbox.id}`);
+    });
+  });
+});
