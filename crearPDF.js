@@ -7,6 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const { jsPDF } = window.jspdf;
                 const pdf = new jsPDF('p', 'pt', 'a4');
 
+               // CAPTURAR VALORES DE TODOS LOS SELECTS CON SUS IDs
+const valoresSelects = new Map();
+const todosLosSelects = document.querySelectorAll('select');
+todosLosSelects.forEach(select => {
+    if (select.id) {
+        valoresSelects.set(select.id, select.value);
+    }
+});
+document.getElementById('monto_retiro').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    e.target.value = new Intl.NumberFormat('es-MX').format(value);
+});
                 const contenedor = document.createElement('div');
                 contenedor.className = 'pdf-container';
 
@@ -28,15 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (botonClone) {
                     botonClone.style.display = 'none';
                 }
-
-                // Ajustar selects
-                const selects = headerClone.querySelectorAll('select');
-                selects.forEach(select => {
-                    select.style.height = 'auto';
-                    select.style.minHeight = '40px';
-                    select.style.overflow = 'visible';
-                    select.style.position = 'relative';
-                });
 
                 // Función para ajustar títulos
                 const ajustarTitulos = (element) => {
@@ -61,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 contenedor.appendChild(mainClone);
                 document.body.appendChild(contenedor);
 
-             
                 const canvas = await html2canvas(contenedor, {
                     scale: 1.0, 
                     useCORS: true,
@@ -71,17 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     windowHeight: contenedor.scrollHeight,
                     onclone: function(clonedDoc) {
                         const clonedSelects = clonedDoc.querySelectorAll('select');
-                        clonedSelects.forEach(select => {
-                            const selectedOption = select.options[select.selectedIndex];
+                        clonedSelects.forEach((select, index) => {
                             const textNode = clonedDoc.createElement('div');
-                            textNode.textContent = select.value || (selectedOption ? selectedOption.text : '');
+                            const valorSeleccionado = valoresSelects.get(select.id);
+const selectedOption = Array.from(select.options).find(option => option.value === valorSeleccionado);
+textNode.textContent = selectedOption ? selectedOption.text : '';
                             textNode.style.border = '1px solid #ccc';
                             textNode.style.padding = '5px 8px';
                             textNode.style.width = '100%';
                             textNode.style.boxSizing = 'border-box';
                             textNode.style.fontFamily = "'Sofia Sans', sans-serif";
                             textNode.style.fontSize = '1.5rem';
-                            textNode.style.height = 'auto';
+                            textNode.style.height = '45px';
+                            textNode.style.display = 'flex';
+                            textNode.style.alignItems = 'center';
                             select.parentNode.replaceChild(textNode, select);
                         });
 
@@ -159,11 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
-
-document.getElementById('monto_retiro').addEventListener('input', function(e) {
-    let value = e.target.value.replace(/\D/g, '');
-    e.target.value = new Intl.NumberFormat('es-MX').format(value);
 });
 
 /*************************modificación campos input*************** */
