@@ -48,12 +48,35 @@ header {
   height: auto;
   flex:1;
 }
+.intermedio {
+  flex: 3;
+}
 .header_logo_Proteccion{
-  width:350px;
-  height: auto;
-  flex: 5;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+}
+
+.bloque_logo {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+}
+
+.bloque_logo p {
+  font-size: 0.8rem;
+  color: var(--Color-secundario);
+  font-weight: bold;
+  margin-bottom: 3px;
+  line-height: 1;
+}
+
+.bloque_logo img {
+  width: 60px;
+  height: auto;
+  display: block;
 }
 .header_titulos {
   display: flex;
